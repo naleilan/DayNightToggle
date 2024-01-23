@@ -1,8 +1,6 @@
-# React + Vite
+# Day night toggle
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+ * [The Creator](https://codepen.io/vihanga/pen/MWPNrVm)
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+![Screenshot (152)](https://github.com/naleilan/DayNightToggle/assets/7776224/70921e08-2f4a-48d3-8b99-6c2ac7bc197b)
+![Screenshot (151)](https://github.com/naleilan/DayNightToggle/assets/7776224/be1baf1c-6580-4d2e-99ca-9396262d1d43)
