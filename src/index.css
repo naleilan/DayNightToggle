@@ -1,0 +1,505 @@
+body {
+  margin: 0;
+  padding: 0;
+  background: #ecf0f1;
+}
+
+.base {
+  display: grid;
+  place-items: center;
+  height: 100vh;
+}
+.base .switch-wrapper {
+  width: 22.5rem;
+  height: 9rem;
+  border-radius: 9rem;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 0 0.5rem;
+  position: relative;
+  overflow: hidden;
+  box-shadow: inset -10px 15px 30px rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+  container-type: inline-size;
+  transition: background 1s ease;
+  z-index: 3;
+}
+.base .switch-wrapper::before {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  content: "";
+  top: 0;
+  left: 0;
+  z-index: 4;
+  border-radius: 9rem;
+  box-shadow: 0 0 5px 6px rgba(0, 0, 0, 0.05) inset;
+}
+.base .switch-wrapper.day {
+  background: #439ee1;
+}
+.base .switch-wrapper.day .clouds-line-1,
+.base .switch-wrapper.day .clouds-line-2 {
+  transform: translateY(0%);
+  transition: all 1s ease;
+  z-index: 1;
+}
+.base .switch-wrapper.day .clouds-line-2 {
+  transition-delay: 40ms;
+}
+.base .switch-wrapper.night {
+  background: #212536;
+}
+.base .switch-wrapper.night .clouds-line-1,
+.base .switch-wrapper.night .clouds-line-2 {
+  transform: translateY(150%);
+  transition: all 0.5s cubic-bezier(0.56, -0.02, 0.64, 1);
+}
+.base .switch-wrapper.night .clouds-line-2 {
+  transition-delay: 40ms;
+}
+.base .switch-wrapper .sun-moon-combo {
+  height: 8rem;
+  width: 8rem;
+  border-radius: 50%;
+  z-index: 3;
+  position: absolute;
+  transition: all 0.8s cubic-bezier(0.56, -0.02, 0.64, 1);
+  transform: rotate(-90deg);
+  filter: drop-shadow(-10px 2px 5px rgba(0, 0, 0, 0.2));
+}
+.base .switch-wrapper .sun-moon-combo.sun {
+  background: #fcd22c;
+  box-shadow: inset -3px 0.6px 2px #fcf66b, inset 5px 0px 2px #e2a43d;
+}
+.base .switch-wrapper .sun-moon-combo .moon-elem {
+  width: 1rem;
+  height: 1rem;
+  content: "";
+  border-radius: 50%;
+  background: #a3b4c3;
+  box-shadow: inset 0 1px 1px #65829b;
+  opacity: 0;
+}
+.base .switch-wrapper .sun-moon-combo .moon-elem:nth-child(1) {
+  left: 3rem;
+  transform: scale(0);
+}
+.base .switch-wrapper .sun-moon-combo .moon-elem:nth-child(2) {
+  top: 3rem;
+  transform: scale(0);
+}
+.base .switch-wrapper .sun-moon-combo .moon-elem:nth-child(3) {
+  bottom: 3rem;
+  right: 3rem;
+  transform: scale(0);
+}
+.base .switch-wrapper .sun-moon-combo.moon {
+  background: #d4d5e2;
+  transform: translateX(calc(100cqw - 100%));
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: inset 0 -4px 2px #65829b, inset 0 5px 2px rgba(255, 255, 255, 0.9);
+}
+.base .switch-wrapper .sun-moon-combo.moon .moon-elem {
+  width: 1rem;
+  height: 1rem;
+  content: "";
+  border-radius: 50%;
+  background: #a3b4c3;
+  box-shadow: inset 0 1px 1px #65829b;
+  opacity: 1;
+  transition: opacity 2s ease, transform 1s ease, left 1s ease, top 1s ease,
+    bottom 1.5s ease;
+  position: absolute;
+}
+.base .switch-wrapper .sun-moon-combo.moon .moon-elem:nth-child(1) {
+  left: 1.5rem;
+  transform: scale(2.5);
+}
+.base .switch-wrapper .sun-moon-combo.moon .moon-elem:nth-child(2) {
+  top: 1.2rem;
+  transform: scale(1.5);
+}
+.base .switch-wrapper .sun-moon-combo.moon .moon-elem:nth-child(3) {
+  bottom: 1.8rem;
+  right: 1.8rem;
+  transform: scale(1.8);
+}
+.base .switch-wrapper .clouds-line-1,
+.base .switch-wrapper .clouds-line-2 {
+  position: absolute;
+  height: 5rem;
+  width: 5rem;
+  border-radius: 50%;
+  top: 2rem;
+  right: -2rem;
+  background: #d1ecfc;
+  box-shadow: -40px 40px 1px #d1ecfc, -80px 80px 1px #d1ecfc,
+    -120px 80px 1px #d1ecfc, -160px 90px 1px #d1ecfc, -200px 80px 1px #d1ecfc,
+    -240px 90px 1px #d1ecfc, -280px 100px 1px #d1ecfc, -300px 80px 1px #d1ecfc,
+    -340px 50px 1px #d1ecfc;
+  z-index: 1;
+  transform: translateY(0);
+}
+.base .switch-wrapper .clouds-line-2 {
+  top: 0;
+  right: -2rem;
+  opacity: 0.5;
+}
+.base .switch-wrapper .raybase,
+.base .switch-wrapper .raybase-2 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  z-index: 2;
+}
+.base .switch-wrapper .raybase .ray-1,
+.base .switch-wrapper .raybase-2 .ray-1 {
+  width: 11rem;
+  height: 11rem;
+  background: #fff;
+  content: "";
+  opacity: 0.15;
+  border-radius: 50%;
+  position: absolute;
+  transform-origin: left;
+}
+.base .switch-wrapper .raybase .ray-2,
+.base .switch-wrapper .raybase-2 .ray-2 {
+  width: 15rem;
+  height: 15rem;
+  background: #fff;
+  content: "";
+  opacity: 0.2;
+  border-radius: 50%;
+  position: absolute;
+  transform-origin: left;
+}
+.base .switch-wrapper .raybase .ray-3,
+.base .switch-wrapper .raybase-2 .ray-3 {
+  width: 19rem;
+  height: 19rem;
+  background: #fff;
+  content: "";
+  opacity: 0.3;
+  border-radius: 50%;
+  position: absolute;
+  transform-origin: left;
+}
+.base .switch-wrapper .raybase {
+  left: 4.5rem;
+}
+.base .switch-wrapper .raybase.hide {
+  transition: all 1s ease;
+  transition: all 1s ease;
+  transition: all 1s ease;
+}
+.base .switch-wrapper .raybase.hide .ray-1 {
+  transform: scale(0);
+  transition: transform 1s ease, opacity 0.5s ease;
+  transition-delay: 0.0333333333s;
+  opacity: 0;
+  transform-origin: left;
+}
+.base .switch-wrapper .raybase.hide .ray-2 {
+  transform: scale(0);
+  transition: transform 1s ease, opacity 0.5s ease;
+  transition-delay: 0.0666666667s;
+  opacity: 0;
+  transform-origin: left;
+}
+.base .switch-wrapper .raybase.hide .ray-3 {
+  transform: scale(0);
+  transition: transform 1s ease, opacity 0.5s ease;
+  transition-delay: 0.1s;
+  opacity: 0;
+  transform-origin: left;
+}
+.base .switch-wrapper .raybase.show {
+  left: 4.5rem;
+  transition: all 1s ease 0.6s;
+  transition: all 1s ease 0.6s;
+  transition: all 1s ease 0.6s;
+}
+.base .switch-wrapper .raybase.show .ray-1 {
+  transform: scale(1);
+  transition: transform 1s ease, opacity 1.5s ease;
+  transition-delay: 0.0333333333s;
+  opacity: 0.2;
+  transform-origin: left;
+}
+.base .switch-wrapper .raybase.show .ray-2 {
+  transform: scale(1);
+  transition: transform 1s ease, opacity 1.5s ease;
+  transition-delay: 0.0666666667s;
+  opacity: 0.2;
+  transform-origin: left;
+}
+.base .switch-wrapper .raybase.show .ray-3 {
+  transform: scale(1);
+  transition: transform 1s ease, opacity 1.5s ease;
+  transition-delay: 0.1s;
+  opacity: 0.2;
+  transform-origin: left;
+}
+.base .switch-wrapper .raybase-2 {
+  right: 4.5rem;
+}
+.base .switch-wrapper .raybase-2.hide {
+  transition: all 1s ease;
+  transition: all 1s ease;
+  transition: all 1s ease;
+}
+.base .switch-wrapper .raybase-2.hide .ray-1 {
+  transform: scale(0);
+  transition: transform 1s ease, opacity 0.5s ease;
+  transition-delay: 0.0333333333s;
+  opacity: 0;
+  transform-origin: right;
+}
+.base .switch-wrapper .raybase-2.hide .ray-2 {
+  transform: scale(0);
+  transition: transform 1s ease, opacity 0.5s ease;
+  transition-delay: 0.0666666667s;
+  opacity: 0;
+  transform-origin: right;
+}
+.base .switch-wrapper .raybase-2.hide .ray-3 {
+  transform: scale(0);
+  transition: transform 1s ease, opacity 0.5s ease;
+  transition-delay: 0.1s;
+  opacity: 0;
+  transform-origin: right;
+}
+.base .switch-wrapper .raybase-2.show {
+  right: 4.5rem;
+  transition: all 1s ease 0.6s;
+  transition: all 1s ease 0.6s;
+  transition: all 1s ease 0.6s;
+}
+.base .switch-wrapper .raybase-2.show .ray-1 {
+  transform: scale(1);
+  transition: transform 1s ease, opacity 1.5s ease;
+  transition-delay: 0.0333333333s;
+  opacity: 0.2;
+  transform-origin: right;
+}
+.base .switch-wrapper .raybase-2.show .ray-2 {
+  transform: scale(1);
+  transition: transform 1s ease, opacity 1.5s ease;
+  transition-delay: 0.0666666667s;
+  opacity: 0.2;
+  transform-origin: right;
+}
+.base .switch-wrapper .raybase-2.show .ray-3 {
+  transform: scale(1);
+  transition: transform 1s ease, opacity 1.5s ease;
+  transition-delay: 0.1s;
+  opacity: 0.2;
+  transform-origin: right;
+}
+.base .switch-wrapper .stars {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: 1;
+}
+.base .switch-wrapper .stars .star {
+  width: 1rem;
+  height: 1rem;
+  background: rgba(255, 255, 255, 0.7);
+  content: "";
+  position: absolute;
+  left: 5rem;
+  top: 5rem;
+  z-index: 1;
+  clip-path: polygon(
+    37% 37%,
+    50% 0,
+    60% 38%,
+    99% 47%,
+    58% 63%,
+    47% 100%,
+    37% 62%,
+    0 46%
+  );
+}
+.base .switch-wrapper .stars .star:nth-child(1) {
+  top: 2rem;
+  left: 3rem;
+  animation-delay: 0.1s;
+  animation: sparkling 0.5s linear infinite;
+}
+.base .switch-wrapper .stars .star:nth-child(2) {
+  top: 2rem;
+  left: 10rem;
+  animation-delay: 0.2s;
+  animation: sparkling 0.5s linear infinite;
+}
+.base .switch-wrapper .stars .star:nth-child(3) {
+  top: 7rem;
+  left: 9rem;
+  position: absolute;
+  animation: sparkling 0.5s linear infinite;
+  animation-delay: 0.3s;
+}
+.base .switch-wrapper .stars .round-star {
+  width: 0.3rem;
+  height: 0.3rem;
+  background: rgba(255, 255, 255, 0.7);
+  content: "";
+  position: absolute;
+  z-index: 1;
+  border-radius: 50%;
+}
+.base .switch-wrapper .stars .round-star:nth-of-type(1) {
+  top: 1rem;
+  left: 7rem;
+  width: 2px;
+  height: 1px;
+  opacity: 0.71;
+  animation: sparkling 0.5s linear infinite;
+  animation-delay: 0.05s;
+}
+.base .switch-wrapper .stars .round-star:nth-of-type(2) {
+  top: 0rem;
+  left: 5rem;
+  width: 1px;
+  height: 1px;
+  opacity: 0.86;
+  animation: sparkling 0.5s linear infinite;
+  animation-delay: 0.1s;
+}
+.base .switch-wrapper .stars .round-star:nth-of-type(3) {
+  top: 7rem;
+  left: 2rem;
+  width: 1px;
+  height: 1px;
+  opacity: 0.84;
+  animation: sparkling 0.5s linear infinite;
+  animation-delay: 0.15s;
+}
+.base .switch-wrapper .stars .round-star:nth-of-type(4) {
+  top: 7rem;
+  left: 7rem;
+  width: 1px;
+  height: 2px;
+  opacity: 0.62;
+  animation: sparkling 0.5s linear infinite;
+  animation-delay: 0.2s;
+}
+.base .switch-wrapper .stars .round-star:nth-of-type(5) {
+  top: 2rem;
+  left: 2rem;
+  width: 2px;
+  height: 2px;
+  opacity: 0.66;
+  animation: sparkling 0.5s linear infinite;
+  animation-delay: 0.25s;
+}
+.base .switch-wrapper .stars .round-star:nth-of-type(6) {
+  top: 4rem;
+  left: 0rem;
+  width: 2px;
+  height: 1px;
+  opacity: 0.8;
+  animation: sparkling 0.5s linear infinite;
+  animation-delay: 0.3s;
+}
+.base .switch-wrapper .stars .round-star:nth-of-type(7) {
+  top: 3rem;
+  left: 4rem;
+  width: 1px;
+  height: 1px;
+  opacity: 0.86;
+  animation: sparkling 0.5s linear infinite;
+  animation-delay: 0.35s;
+}
+.base .switch-wrapper .stars .round-star:nth-of-type(8) {
+  top: 8rem;
+  left: 2rem;
+  width: 2px;
+  height: 1px;
+  opacity: 0.74;
+  animation: sparkling 0.5s linear infinite;
+  animation-delay: 0.4s;
+}
+.base .switch-wrapper .stars .round-star:nth-of-type(9) {
+  top: 7rem;
+  left: 3rem;
+  width: 2px;
+  height: 1px;
+  opacity: 0.79;
+  animation: sparkling 0.5s linear infinite;
+  animation-delay: 0.45s;
+}
+.base .switch-wrapper .stars .round-star:nth-of-type(10) {
+  top: 6rem;
+  left: 6rem;
+  width: 2px;
+  height: 1px;
+  opacity: 0.72;
+  animation: sparkling 0.5s linear infinite;
+  animation-delay: 0.5s;
+}
+.base .switch-wrapper .stars .round-star:nth-of-type(11) {
+  top: 6rem;
+  left: 7rem;
+  width: 2px;
+  height: 2px;
+  opacity: 0.75;
+  animation: sparkling 0.5s linear infinite;
+  animation-delay: 0.55s;
+}
+.base .switch-wrapper .stars .round-star:nth-of-type(12) {
+  top: 6rem;
+  left: 6rem;
+  width: 2px;
+  height: 2px;
+  opacity: 0.92;
+  animation: sparkling 0.5s linear infinite;
+  animation-delay: 0.6s;
+}
+.base .switch-wrapper .stars .round-star:nth-of-type(13) {
+  top: 1rem;
+  left: 8rem;
+  width: 2px;
+  height: 1px;
+  opacity: 0.68;
+  animation: sparkling 0.5s linear infinite;
+  animation-delay: 0.65s;
+}
+.base .switch-wrapper .stars .round-star:nth-of-type(14) {
+  top: 5rem;
+  left: 7rem;
+  width: 1px;
+  height: 2px;
+  opacity: 0.76;
+  animation: sparkling 0.5s linear infinite;
+  animation-delay: 0.7s;
+}
+.base .switch-wrapper .stars .round-star:nth-of-type(15) {
+  top: 7rem;
+  left: 8rem;
+  width: 1px;
+  height: 1px;
+  opacity: 0.52;
+  animation: sparkling 0.5s linear infinite;
+  animation-delay: 0.75s;
+}
+
+@keyframes sparkling {
+  0% {
+    box-shadow: 0 0 0px rgba(255, 255, 255, 0.5);
+    transform: scale(0.9);
+  }
+  50% {
+    box-shadow: 0 0 10px 0.6px rgba(255, 255, 255, 0.9);
+    transform: scale(1.1);
+  }
+}
